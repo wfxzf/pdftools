@@ -15,14 +15,12 @@
 ##  将按照数字顺序合成                                                                                                        ##
 ################################################################################################################################
 
-# 只需修改存放PDF文件的文件夹变量：file_dir 和 输出文件名变量: outfile
 
 import os
 from PyPDF2 import PdfFileReader, PdfFileWriter
 import time
 
 
-# 合并同一目录下的所有PDF文件
 def MergePDF(outfile):
 
     file_list = os.listdir('pdf')#文件夹
