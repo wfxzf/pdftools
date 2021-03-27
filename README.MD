@@ -1,4 +1,4 @@
-# PDF工具
+# Python PDF工具
 **图片转PDF、PDF合并、PDF切分**  
 
 multpic2pdf.py&nbsp;&nbsp;&nbsp;——&nbsp;&nbsp;多个图片合成PDF  
