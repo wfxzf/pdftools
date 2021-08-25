@@ -10,11 +10,11 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-###############################################################################################################################
-##  使用方法  :   执行路径下新建image文件夹，将要转PDF的图片用数字命名（如 1.png,2.png,3.png）放入此文件夹中。                    ##                                        
-##  将按照数字顺序将图片合成为PDF，仅支持jpg\gif\png格式                                                                        ##
-##  其他格式需要修改  “if "jpg" in x or 'png' in x or "JPG" in x or 'PNG' in x or "GIF" in x or 'gif' in x:”处后使用           ##
-################################################################################################################################
+#################################################################################################################################
+##  使用方法  :   执行路径下新建image文件夹，将要转PDF的图片用数字命名（如 1.png,2.png,3.png）放入此文件夹中。或批量命名为‘ (1).jpg’ ##                                        
+##  将按照数字顺序将图片合成为PDF，仅支持jpg\gif\png格式                                                                          ##
+##  其他格式需要修改  “if "jpg" in x or 'png' in x or "JPG" in x or 'PNG' in x or "GIF" in x or 'gif' in x:”处后使用             ##
+#################################################################################################################################
 
 
 
@@ -28,18 +28,21 @@ def rea(pdf_name):
     pic_number = 0
     im_list = []
     for x in file_list:
+        
         if  'png' in x or 'PNG' in x or "GIF" in x or 'gif' in x:
             pic_number = pic_number + 1
-            os.rename('image/'+x,'image/'+x[:-3]+'jpg')
+            os.rename('image/'+x,'image/'+x.replace(' ','').replace('(','').replace(')','')[:-3]+'jpg')
         if "jpeg" in x:
             pic_number = pic_number + 1
-            os.rename('image/'+x,'image/'+x[:-4]+'jpg')
+            os.rename('image/'+x,'image/'+x.replace(' ','').replace('(','').replace(')','')[:-4]+'jpg')
         if  "jpg" in x or 'JPG' in x:
+            os.rename('image/'+x,'image/'+x.replace(' ','').replace('(','').replace(')','')[:-3]+'jpg')
             pic_number = pic_number + 1
 
 
     new_pic=[]
     for i in range(1,pic_number+1):
+        #new_pic.append(' ('+str(i)+')'+'.jpg')
         new_pic.append(str(i)+'.jpg')
     
     im1 = Image.open('image/'+new_pic[0])#记得改文件夹
@@ -49,7 +52,7 @@ def rea(pdf_name):
         img = img.convert('RGB')
         im_list.append(img)
     print(len(im_list))
-    im1.save(pdf_name, "PDF", resolution=300.0, save_all=True, append_images=im_list)
+    im1.save(pdf_name, "PDF", resolution=1000.0, save_all=True, append_images=im_list)
     print("输出文件名称：", pdf_name)
 
 
