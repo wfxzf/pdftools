@@ -46,6 +46,7 @@ def rea(pdf_name):
         new_pic.append(str(i)+'.jpg')
     
     im1 = Image.open('image/'+new_pic[0])#记得改文件夹
+    im1 = im1.convert('RGB')
     new_pic.pop(0)
     for i in new_pic:
         img = Image.open('image/'+i)#记得改文件夹
